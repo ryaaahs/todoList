@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'strawford-regular';
+        src: url(/src/fonts/strawford-regular-webfont.ttf);
+    }
+}
+
+html, body {height:100%}
+
+.fa-lh {
+    line-height: inherit;   
+}
