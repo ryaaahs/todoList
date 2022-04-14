@@ -11,6 +11,34 @@
 
 html, body {height:100%}
 
-.fa-lh {
-    line-height: inherit;   
+.app-container {
+    width: 60%;
+    margin: 0 auto;
+    height: 100%;
+    background-color: #F0F4FF;
+    border-radius: 5px;
+}
+
+.todoListContainer {
+    border-radius: 10px;
+    height: 75px;
+    width: 80%;
+    background-color: rgb(197, 162, 241, 0.5);
+;
+}
+
+.todoListInput {
+    border-radius: 10px;
+    width: 100%;
+    height: 35px;
+    background-color: transparent;
+    outline: none;
+}
+
+.addItemIcon {
+    color: #8A5BC7;
+}
+
+.addItemIcon:active {
+    color: #814491;
 }

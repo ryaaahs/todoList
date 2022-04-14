@@ -7,11 +7,35 @@
   <script src="https://kit.fontawesome.com/607186c53a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="mt-5 ml-5">
-        <p class="text-3xl font-strawford font-bold">
-            <i class="fa-solid fa-list-check fa-xl pr-3"></i>
-            todoList
-        </p>
+    <div class="app-container flex flex-col">
+        <div class="main-nav grid grid-flow-row-dense grid-cols-4 grid-rows-1 pt-10 pl-10">
+            <span class="col-start-1 text-4xl font-strawford font-bold pl-10">
+                <i class="fa-solid fa-list-check fa-2xl pr-3"></i>
+                todoList
+            </span>
+            <span class="col-end-5 flex basis-1/4 text-4xl font-strawford font-bold justify-center">
+                <a href="/">About</a>
+            </span>
+        </div>
+       <div class="app-body flex flex-col flex-auto mt-5">
+           <div class="createItem flex flex-row basis-3/12 items-end">
+                <div class="flex-auto grid grid-flow-row-dense grid-cols-4 grid-rows-1">
+                    <div class="col-span-3 flex justify-end">
+                        <div class="todoListContainer flex flex-col justify-center">
+                            <input class="todoListInput font-strawford text-lg placeholder-purple-900 pl-5" type="text" placeholder="Add your items here!" name="itemTextBox">
+                        </div>
+                    </div>
+                    <div class="col-end-5 grid grid-cols-4 grid-rows-1" style="width: 100%">
+                        <button class="text-4xl col-start-2 " type="button">
+                            <i class="fa-solid fa-square-plus fa-2xl addItemIcon"></i>
+                        </button>
+                    </div>
+                </div>
+           </div>
+            <div class="items basis-9/12">
+
+            </div>
+       </div>  
     </div> 
 </body>
 </html>
