@@ -2,3 +2,37 @@
     display: flex;
     gap: 2rem;
 }
+
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-list-item {
+    display: flex;
+    gap: 1rem;
+}
+
+.completed-button {
+    background-color: green;
+    border-color: darkgreen;
+}
+
+.completed-button:hover {
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+.remove-button:hover {
+    cursor: pointer;
+    background-color: darkred;
+}
+
+.remove-button {
+    background-color: red;
+    border-color: darkred;
+}
+
+.add-button:hover {
+    cursor: pointer;
+}
