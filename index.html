@@ -6,25 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/todoList.css"> 
     <script src="https://kit.fontawesome.com/886947b47f.js" crossorigin="anonymous"></script>
+    <script src="/todoList.js"></script>
     <title>todoList</title>
 </head>
 <body>
-    <div class="input-container">
-        <input type="text" id="input" name="input">
-        <button type="button" class="button add-button">
-            <i class="fa-solid fa-plus"></i>
-        </button>
+    <div class="app">
+        <div class="app-title">
+            <span>
+                <i><b>todoList</b></i>
+            </span>
+        </div>
+        <div class="input-container">
+            <input type="text" placeholder="Item Name" class='todo-list-input'>
+            <button type="button" class="button add-button" onclick="createItem()">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+        <ul class="todo-list-container">
+            <li class="todo-list-item">
+                <span class="todo-list-item-name">
+                    Test Item
+                </span>
+                <button type="button" class="complete-button">
+                    <i class="fa-solid fa-check"></i>
+                </button>
+                <button type="button" class="remove-button">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </li>
+        </ul>
     </div>
-    <ul class="todo-list">
-        <li class="todo-list-item">
-            Test Item
-            <button type="button" class="completed-button">
-                <i class="fa-solid fa-check"></i>
-            </button>
-            <button type="button" class="remove-button">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </li>
-    </ul>
 </body>
 </html>
