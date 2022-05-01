@@ -39,6 +39,18 @@ function completeItem(index) {
     }
 }
 
+function removeItem(index) {
+    itemList[index].remove();
+
+    itemList.splice(index, 1);
+
+    for (let i = 0; i < itemList.length; i++) {
+        let buttons = itemList[i].getElementsByTagName('button');
+        buttons[0].id = i;
+        buttons[1].id = i;
+    }
+}
+
 function createCompleteButton() {
     let button = document.createElement('button');
     let icon = document.createElement('i');
@@ -48,6 +60,8 @@ function createCompleteButton() {
     button.append(icon);
     button.id = itemList.length;
 
+    // When creating an event, we need to assign a nameless
+    // function to the event to call the logic we want
     button.onclick = function(e) {
         completeItem(this.id);
     }
@@ -62,6 +76,11 @@ function createRemoveButton() {
     button.classList.add('remove-button');
     icon.classList.add('fa-solid', 'fa-xmark');
     button.append(icon);
+    button.id = itemList.length;
+
+    button.onclick = function(e) {
+        removeItem(this.id);
+    }
 
     return button;
 }
