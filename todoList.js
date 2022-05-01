@@ -1,9 +1,11 @@
+let itemList = [];
+
 function createItem() {
     let input = document.getElementsByClassName('todo-list-input')[0];
     let itemValue = input.value; 
 
     if (itemValue) {
-        let todoList = document.getElementsByClassName('todo-list')[0];
+        let todoList = document.getElementsByClassName('todo-list-container')[0];
         let item = document.createElement('li');
 
         let itemName = document.createElement('span');
@@ -20,6 +22,20 @@ function createItem() {
         item.append(itemName, completeButton, removeButton);
 
         todoList.append(item);
+        itemList.push(item);
+    }
+}
+
+function completeItem(index) {
+    let item = itemList[index];
+    let itemName = item.getElementsByTagName('span')[0];
+
+    if (itemName.classList.contains('strike-through')) {
+        itemName.classList.remove('strike-through');
+        item.classList.remove('item-completed');
+    } else {
+        itemName.classList.add('strike-through');
+        item.classList.add('item-completed');
     }
 }
 
@@ -30,6 +46,11 @@ function createCompleteButton() {
     button.classList.add('complete-button');
     icon.classList.add('fa-solid', 'fa-check');
     button.append(icon);
+    button.id = itemList.length;
+
+    button.onclick = function(e) {
+        completeItem(this.id);
+    }
 
     return button;
 }

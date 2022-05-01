@@ -83,3 +83,11 @@ button {
 .add-button:hover {
     cursor: pointer;
 }
+
+.strike-through {
+    text-decoration: line-through;
+}
+
+.item-completed {
+    background-color: lightgreen;
+}
