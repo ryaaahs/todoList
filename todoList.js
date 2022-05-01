@@ -1,5 +1,10 @@
+// GLOBAL VARIABLES
 let itemList = [];
 
+/**
+ * Creates a new todo item from the input text.
+ * Creating the title, complete button, and remove button.
+ */
 function createItem() {
     let input = document.getElementsByClassName('todo-list-input')[0];
     let itemValue = input.value; 
@@ -26,6 +31,11 @@ function createItem() {
     }
 }
 
+/**
+ * Sets the display of an item to the complete state
+ * 
+ * @param Number index  The index of the item we're changing
+ */
 function completeItem(index) {
     let item = itemList[index];
     let itemName = item.getElementsByTagName('span')[0];
@@ -39,6 +49,12 @@ function completeItem(index) {
     }
 }
 
+/**
+ * Removes the item from the DOM and itemList
+ * 
+ * @param Number index  The index of the item we're removing
+ *                      from the todo list
+ */
 function removeItem(index) {
     itemList[index].remove();
 
@@ -51,6 +67,11 @@ function removeItem(index) {
     }
 }
 
+/**
+ * Creates a complete button
+ * 
+ * @returns Button element with the complete functionality
+ */
 function createCompleteButton() {
     let button = document.createElement('button');
     let icon = document.createElement('i');
@@ -69,6 +90,11 @@ function createCompleteButton() {
     return button;
 }
 
+/**
+ * Creates a remove button
+ * 
+ * @returns Button element with the remove functionality
+ */
 function createRemoveButton() {
     let button = document.createElement('button');
     let icon = document.createElement('i');
