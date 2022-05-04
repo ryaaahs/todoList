@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 });
 
 /**
- * Recreates the the todo list in the DOM by grabbing the contents of the LocalStorage,
+ * Recreates the todo list in the DOM by grabbing the contents of the LocalStorage,
  * and using that information to recreate the items.
  */
 function recreateTodoList() {
