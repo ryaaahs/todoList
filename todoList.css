@@ -27,7 +27,7 @@ body {
 }
 
 .todo-list-input {
-    width: 95%;
+    width: 100%;
 }
 
 .todo-list-container {
@@ -47,7 +47,7 @@ body {
 .todo-list-item-name {
     display: flex;
     align-items: center;
-    width: 90%;
+    width: 100%;
 }
 
 button {
