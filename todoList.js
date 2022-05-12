@@ -20,6 +20,8 @@ function recreateTodoList() {
     for (let i = 0; i < itemList.length; i++) {
         let itemElement = document.createElement('li');
         let itemNameElement = document.createElement('span');
+        let selectElement = createPrioritySelect();
+        let itemOptions = document.createElement('div');
         let completeButtonElement = createCompleteButton();
         let removeButtonElement = createRemoveButton(); 
         let item = itemList[i];
@@ -32,8 +34,13 @@ function recreateTodoList() {
         itemNameElement.classList.add('todo-list-item-name');
         itemNameElement.append(document.createTextNode(item.name));
 
+        itemOptions.classList.add('item-options');
+        itemOptions.append(selectElement,completeButtonElement, 
+            removeButtonElement);
+
         itemElement.classList.add('todo-list-item');
-        itemElement.append(itemNameElement, completeButtonElement, removeButtonElement);
+        itemElement.append(itemNameElement, itemOptions);
+
         todoListElement.append(itemElement);
         buttonID++;
     }
@@ -54,6 +61,8 @@ function createItem() {
         let itemNameElement = document.createElement('span');
         let completeButtonElement = createCompleteButton();
         let removeButtonElement = createRemoveButton(); 
+        let selectElement = createPrioritySelect();
+        let itemOptions = document.createElement('div');
 
         itemNameElement.classList.add('todo-list-item-name');
         itemNameElement.append(document.createTextNode(inputElement.value))
@@ -61,8 +70,12 @@ function createItem() {
         // Remove text from the input
         inputElement.value = ''; 
 
+        itemOptions.classList.add('item-options');
+        itemOptions.append(selectElement,completeButtonElement, 
+            removeButtonElement);
+
         itemElement.classList.add('todo-list-item');
-        itemElement.append(itemNameElement, completeButtonElement, removeButtonElement);
+        itemElement.append(itemNameElement, itemOptions);
 
         todoListElement.append(itemElement);
 
@@ -163,4 +176,38 @@ function createRemoveButton() {
     }
 
     return buttonElement;
+}
+
+/**
+ * Creates a remove button
+ * 
+ * @returns Button element with the remove functionality
+ */
+ function createPrioritySelect() {
+    let selectElement = document.createElement('select');
+    let selectPriority = document.createElement('option');
+    let priorityOneElement = document.createElement('option');
+    let priorityTwoElement = document.createElement('option');
+    let priorityThreeElement = document.createElement('option');
+
+    selectPriority.append(document.createTextNode('Please select a priority ...'));
+    priorityOneElement.append(document.createTextNode('1'));
+    priorityTwoElement.append(document.createTextNode('2'));
+    priorityThreeElement.append(document.createTextNode('3'));
+
+    selectPriority.value = "";
+    priorityOneElement.value = "1";
+    priorityTwoElement.value = "2";
+    priorityThreeElement.value = "3";
+
+    selectElement.id = buttonID;
+
+    selectElement.change = function(e) {
+        //removeItem(this.id);
+    }
+
+    selectElement.append(selectPriority, priorityOneElement, priorityTwoElement, 
+        priorityThreeElement);
+
+    return selectElement;
 }
