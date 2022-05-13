@@ -79,14 +79,31 @@ button {
     width: 25px;
 }
 
+.add-button:hover {
+    cursor: pointer;
+}
+
 .item-options { 
     display: flex;
     justify-content: space-between;
     gap: 1rem;
 }
 
-.add-button:hover {
-    cursor: pointer;
+.priority-one {
+    background-color: rgb(103, 187, 255);
+}
+
+.priority-two {
+    background-color: rgb(255, 246, 84);
+}
+
+.priority-three {
+    background-color: rgb(255, 92, 71);
+}
+
+select option {
+    background-color: black;
+    color: white;
 }
 
 .strike-through {

@@ -38,6 +38,23 @@ function recreateTodoList() {
         itemOptions.append(selectElement,completeButtonElement, 
             removeButtonElement);
 
+        selectElement.value = item.priority;
+
+        switch(item.priority) {
+            case "1":
+                // Clear all classes
+                selectElement.classList.add("priority-one");
+            break;
+            case "2":
+                // Clear all classes
+                selectElement.classList.add("priority-two");
+            break;
+            case "3":
+                // Clear all classes
+                selectElement.classList.add("priority-three");
+            break;
+        }
+        
         itemElement.classList.add('todo-list-item');
         itemElement.append(itemNameElement, itemOptions);
 
@@ -179,9 +196,9 @@ function createRemoveButton() {
 }
 
 /**
- * Creates a remove button
+ * Creates the priority select option 
  * 
- * @returns Button element with the remove functionality
+ * @returns The select element with the change priority functionality
  */
  function createPrioritySelect() {
     let selectElement = document.createElement('select');
@@ -191,23 +208,66 @@ function createRemoveButton() {
     let priorityThreeElement = document.createElement('option');
 
     selectPriority.append(document.createTextNode('Please select a priority ...'));
-    priorityOneElement.append(document.createTextNode('1'));
-    priorityTwoElement.append(document.createTextNode('2'));
-    priorityThreeElement.append(document.createTextNode('3'));
+    priorityOneElement.append(document.createTextNode('High'));
+    priorityTwoElement.append(document.createTextNode('Medium'));
+    priorityThreeElement.append(document.createTextNode('Low'));
 
     selectPriority.value = "";
-    priorityOneElement.value = "1";
+    priorityOneElement.value = "3";
     priorityTwoElement.value = "2";
-    priorityThreeElement.value = "3";
+    priorityThreeElement.value = "1";
 
+    selectElement.classList.add("priority");
     selectElement.id = buttonID;
 
-    selectElement.change = function(e) {
-        //removeItem(this.id);
+    selectElement.onchange = function(e) {
+        changePriority(e, this.id);
     }
 
     selectElement.append(selectPriority, priorityOneElement, priorityTwoElement, 
         priorityThreeElement);
 
     return selectElement;
+}
+
+/**
+ * Changes the item select value to the priority selected 
+ * by the user
+ * 
+ * @param {*} e Event data
+ * @param {*} index The index we're changing
+ */
+function changePriority(e, index) {
+    // Get value from event
+    // Add or remove class depending on what value we have.
+    let priorityElement = document.getElementsByClassName("priority")[index];
+    let item = itemList[index];
+    let value = e.target.value;
+
+    switch(value) {
+        case "":
+            // Clear all classes
+            priorityElement.classList.remove("priority-one", "priority-two", "priority-three");
+            item.priority = "";
+        break;
+        case "1":
+            // Low  priority
+            priorityElement.classList.add("priority-one");
+            priorityElement.classList.remove("priority-two", "priority-three");
+            item.priority = "1";
+        break;
+        case "2":
+            // Medium priority
+            priorityElement.classList.add("priority-two");
+            priorityElement.classList.remove("priority-one", "priority-three");
+            item.priority = "2";
+        break;
+        case "3":
+            // High priority
+            priorityElement.classList.add("priority-three");
+            priorityElement.classList.remove("priority-one", "priority-two");
+            item.priority = "3";
+        break;
+    }
+    localStorage.setItem('itemList', JSON.stringify(itemList));
 }
