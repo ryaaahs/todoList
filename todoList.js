@@ -3,7 +3,7 @@ let itemList = JSON.parse(localStorage.getItem("itemList") || "[]");
 let buttonID = 0;
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    // Add the content to the todoList
+    // Add the content to the todoList container
     if (itemList) {
         recreateTodoList();
     }
@@ -42,15 +42,12 @@ function recreateTodoList() {
 
         switch(item.priority) {
             case "1":
-                // Clear all classes
                 selectElement.classList.add("priority-one");
             break;
             case "2":
-                // Clear all classes
                 selectElement.classList.add("priority-two");
             break;
             case "3":
-                // Clear all classes
                 selectElement.classList.add("priority-three");
             break;
         }

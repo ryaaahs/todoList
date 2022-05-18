@@ -1,3 +1,4 @@
+/* DOM ELEMENTS */
 html, body {
     margin: 0;
     padding: 0;
@@ -11,6 +12,29 @@ body {
     justify-content: center;
 }
 
+select {
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+select option {
+    background-color: black;
+    color: white;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+:root {
+    --low-priority: rgb(103, 187, 255);
+    --med-priority: rgb(255, 246, 84);
+    --high-priority: rgb(255, 92, 71);
+}
+
+/* APP */
 .app {
     margin-top: 20%;
     width: 70%;
@@ -20,6 +44,7 @@ body {
     margin-bottom: 1.5rem;
 }
 
+/* ITEM INPUT */
 .input-container {
     display: flex;
     gap: 1rem;
@@ -30,6 +55,11 @@ body {
     width: 100%;
 }
 
+.add-button:hover {
+    cursor: pointer;
+}
+
+/* TODO LIST */
 .todo-list-container {
     list-style-type: none;
     padding: 0;
@@ -47,12 +77,6 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
-}
-
-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .complete-button {
@@ -79,10 +103,7 @@ button {
     width: 25px;
 }
 
-.add-button:hover {
-    cursor: pointer;
-}
-
+/* PRIORITY */
 .item-options { 
     display: flex;
     justify-content: space-between;
@@ -90,22 +111,18 @@ button {
 }
 
 .priority-one {
-    background-color: rgb(103, 187, 255);
+    background-color: var(--low-priority);
 }
 
 .priority-two {
-    background-color: rgb(255, 246, 84);
+    background-color: var(--med-priority);
 }
 
 .priority-three {
-    background-color: rgb(255, 92, 71);
+    background-color: var(--high-priority);
 }
 
-select option {
-    background-color: black;
-    color: white;
-}
-
+/* ITEM MODIFICATIONS */ 
 .strike-through {
     text-decoration: line-through;
 }
