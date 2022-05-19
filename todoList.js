@@ -85,7 +85,7 @@ function createItem() {
         inputElement.value = ''; 
 
         itemOptions.classList.add('item-options');
-        itemOptions.append(selectElement,completeButtonElement, 
+        itemOptions.append(selectElement, completeButtonElement, 
             removeButtonElement);
 
         itemElement.classList.add('todo-list-item');
@@ -93,7 +93,7 @@ function createItem() {
 
         todoListElement.append(itemElement);
 
-        itemList.push({'name': itemName, 'completeState': false});
+        itemList.push({'name': itemName, 'completeState': false, 'priority': selectElement.value});
         localStorage.setItem('itemList', JSON.stringify(itemList));
         buttonID++;
     }
@@ -209,7 +209,8 @@ function createRemoveButton() {
     priorityTwoElement.append(document.createTextNode('Medium'));
     priorityThreeElement.append(document.createTextNode('Low'));
 
-    selectPriority.value = "";
+    selectPriority.value = "no-value";
+    selectPriority.selected = "selected";
     priorityOneElement.value = "3";
     priorityTwoElement.value = "2";
     priorityThreeElement.value = "1";
@@ -241,30 +242,28 @@ function changePriority(e, index) {
     let item = itemList[index];
     let value = e.target.value;
 
-    switch(value) {
-        case "":
+    switch (value) {
+        case "no-value":
             // Clear all classes
             priorityElement.classList.remove("priority-one", "priority-two", "priority-three");
-            item.priority = "";
         break;
         case "1":
             // Low  priority
             priorityElement.classList.add("priority-one");
             priorityElement.classList.remove("priority-two", "priority-three");
-            item.priority = "1";
         break;
         case "2":
             // Medium priority
             priorityElement.classList.add("priority-two");
             priorityElement.classList.remove("priority-one", "priority-three");
-            item.priority = "2";
         break;
         case "3":
             // High priority
             priorityElement.classList.add("priority-three");
             priorityElement.classList.remove("priority-one", "priority-two");
-            item.priority = "3";
         break;
     }
+
+    item.priority = value; 
     localStorage.setItem('itemList', JSON.stringify(itemList));
 }
