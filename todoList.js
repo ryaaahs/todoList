@@ -242,30 +242,28 @@ function changePriority(e, index) {
     let item = itemList[index];
     let value = e.target.value;
 
-    switch(value) {
+    switch (value) {
         case "no-value":
             // Clear all classes
             priorityElement.classList.remove("priority-one", "priority-two", "priority-three");
-            item.priority = "no-value";
         break;
         case "1":
             // Low  priority
             priorityElement.classList.add("priority-one");
             priorityElement.classList.remove("priority-two", "priority-three");
-            item.priority = "1";
         break;
         case "2":
             // Medium priority
             priorityElement.classList.add("priority-two");
             priorityElement.classList.remove("priority-one", "priority-three");
-            item.priority = "2";
         break;
         case "3":
             // High priority
             priorityElement.classList.add("priority-three");
             priorityElement.classList.remove("priority-one", "priority-two");
-            item.priority = "3";
         break;
     }
+
+    item.priority = value; 
     localStorage.setItem('itemList', JSON.stringify(itemList));
 }
