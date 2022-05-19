@@ -85,7 +85,7 @@ function createItem() {
         inputElement.value = ''; 
 
         itemOptions.classList.add('item-options');
-        itemOptions.append(selectElement,completeButtonElement, 
+        itemOptions.append(selectElement, completeButtonElement, 
             removeButtonElement);
 
         itemElement.classList.add('todo-list-item');
@@ -93,7 +93,7 @@ function createItem() {
 
         todoListElement.append(itemElement);
 
-        itemList.push({'name': itemName, 'completeState': false});
+        itemList.push({'name': itemName, 'completeState': false, 'priority': selectElement.value});
         localStorage.setItem('itemList', JSON.stringify(itemList));
         buttonID++;
     }
@@ -209,7 +209,8 @@ function createRemoveButton() {
     priorityTwoElement.append(document.createTextNode('Medium'));
     priorityThreeElement.append(document.createTextNode('Low'));
 
-    selectPriority.value = "";
+    selectPriority.value = "no-value";
+    selectPriority.selected = "selected";
     priorityOneElement.value = "3";
     priorityTwoElement.value = "2";
     priorityThreeElement.value = "1";
@@ -242,10 +243,10 @@ function changePriority(e, index) {
     let value = e.target.value;
 
     switch(value) {
-        case "":
+        case "no-value":
             // Clear all classes
             priorityElement.classList.remove("priority-one", "priority-two", "priority-three");
-            item.priority = "";
+            item.priority = "no-value";
         break;
         case "1":
             // Low  priority
