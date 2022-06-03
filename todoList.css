@@ -15,6 +15,7 @@ body {
 select {
     cursor: pointer;
     border-radius: 2px;
+    height: 25px;
 }
 
 select option {
@@ -69,14 +70,16 @@ button {
 .todo-list-item {
     display: flex;
     align-items: stretch;
-
     margin-bottom: 0.5rem;
 }
 
 .todo-list-item-name {
-    display: flex;
+    align-self: center;
     align-items: center;
-    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: calc(100%);
 }
 
 .complete-button {
@@ -107,6 +110,7 @@ button {
 .item-options { 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 1rem;
 }
 

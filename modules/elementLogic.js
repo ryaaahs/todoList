@@ -96,6 +96,10 @@ function changePriority(e, index) {
     localStorage.setItem('itemList', JSON.stringify(itemList));
 }
 
+function checkItemDeadline(e, index) {
+    
+}
+
 function getItemList() {
     return JSON.parse(localStorage.getItem("itemList") || "[]");
 }

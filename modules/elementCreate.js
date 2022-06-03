@@ -1,7 +1,7 @@
 import * as elementLogic from "./elementLogic.js"
 
 // GLOBAL VARIABLES
-let buttonID = 0;
+let rowID = 0;
 
 /**
  * Recreates the todo list in the DOM by grabbing the contents of the LocalStorage,
@@ -14,10 +14,11 @@ let buttonID = 0;
     for (let i = 0; i < itemList.length; i++) {
         let itemElement = document.createElement('li');
         let itemNameElement = document.createElement('span');
-        let selectElement = createPrioritySelect(buttonID);
+        let selectElement = createPrioritySelect(rowID);
         let itemOptions = document.createElement('div');
-        let completeButtonElement = createCompleteButton(buttonID);
-        let removeButtonElement = createRemoveButton(buttonID); 
+        let completeButtonElement = createCompleteButton(rowID);
+        let removeButtonElement = createRemoveButton(rowID); 
+        let deadlineElement = createDeadlineInput(rowID);
         let item = itemList[i];
 
         if (item.completeState) {
@@ -29,7 +30,7 @@ let buttonID = 0;
         itemNameElement.append(document.createTextNode(item.name));
 
         itemOptions.classList.add('item-options');
-        itemOptions.append(selectElement,completeButtonElement, 
+        itemOptions.append(deadlineElement, selectElement,completeButtonElement, 
             removeButtonElement);
 
         selectElement.value = item.priority;
@@ -50,7 +51,7 @@ let buttonID = 0;
         itemElement.append(itemNameElement, itemOptions);
 
         todoListElement.append(itemElement);
-        buttonID += 1;
+        rowID += 1;
     }  
 }
 
@@ -67,9 +68,10 @@ let buttonID = 0;
         let todoListElement = document.getElementsByClassName('todo-list-container')[0];
         let itemElement = document.createElement('li');
         let itemNameElement = document.createElement('span');
-        let completeButtonElement = createCompleteButton(buttonID);
-        let removeButtonElement = createRemoveButton(buttonID); 
-        let selectElement = createPrioritySelect(buttonID);
+        let completeButtonElement = createCompleteButton(rowID);
+        let removeButtonElement = createRemoveButton(rowID); 
+        let selectElement = createPrioritySelect(rowID);
+        let deadlineElement = createDeadlineInput(rowID);
         let itemOptions = document.createElement('div');
 
         itemNameElement.classList.add('todo-list-item-name');
@@ -79,7 +81,7 @@ let buttonID = 0;
         inputElement.value = ''; 
 
         itemOptions.classList.add('item-options');
-        itemOptions.append(selectElement, completeButtonElement, 
+        itemOptions.append(deadlineElement, selectElement, completeButtonElement, 
             removeButtonElement);
 
         itemElement.classList.add('todo-list-item');
@@ -89,7 +91,7 @@ let buttonID = 0;
 
         itemList.push({'name': itemName, 'completeState': false, 'priority': selectElement.value});
         localStorage.setItem('itemList', JSON.stringify(itemList));
-        buttonID += 1;
+        rowID += 1;
     }
 }
 
@@ -145,7 +147,7 @@ function createRemoveButton(itemID) {
 
     buttonElement.onclick = function(e) {
         elementLogic.removeItem(this.id);
-        buttonID -= 1;
+        rowID -= 1;
     }
 
     return buttonElement;
@@ -172,6 +174,23 @@ function createCompleteButton(itemID) {
     }
 
     return buttonElement;
+}
+
+function createDeadlineInput(itemID) {
+    let deadlineInput = document.createElement('input');
+    deadlineInput.type = 'date';
+    deadlineInput.id = itemID;
+    let deadlineContainer = document.createElement('figure');
+    let deadlineTitle = document.createElement('figcaption');
+
+    deadlineInput.onchange = function(e) {
+        elementLogic.checkItemDeadline(this.id);
+    }
+
+    deadlineTitle.innerText = 'Task Deadline'
+    deadlineContainer.append(deadlineTitle, deadlineInput); 
+
+    return deadlineContainer;
 }
 
 export { recreateTodoList, createItem  };
