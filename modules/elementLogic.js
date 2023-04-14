@@ -97,24 +97,55 @@ function checkItemDeadline(e, index) {
     let itemElement = todoListElement.getElementsByTagName('li')[index];
     let deadlineInput = itemElement.getElementsByTagName('input')[0];
     let deadlineDate = new Date(deadlineInput.value);
-    let currentDate = new Date();
     let itemList = getItemList();
     let item = itemList[index];
 
-    if (currentDate.getTime() > deadlineDate) {
-        item.isDeadlinePassed = true;
+    changeDateDisplay(deadlineDate, deadlineInput);
+
+    console.log(JSON.stringify(deadlineDate));
+
+    item.deadlineDate = deadlineInput.value;
+    localStorage.setItem('itemList', JSON.stringify(itemList));
+}
+
+function checkDatePassed(date) {
+    let currentDate = new Date();
+    
+    if (date < currentDate) {
+        return true;
     } else {
-        item.isDeadlinePassed = false;
+        return false;
     }
+}
 
+function checkIfOneDayBefore(date) {
+    let currentDate = new Date();
 
-    console.log(currentDate, deadlineDate);
+    let dayBefore = new Date(date.getTime());
+    dayBefore.setDate(date.getDate() - 1);
+   
+    if (currentDate > dayBefore && currentDate < date) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-    // Grab the value to get the date string
+function changeDateDisplay(date, dateInput) {
+    if (checkDatePassed(date)) {
+        dateInput.style.backgroundColor = "red";
+    } else if (checkIfOneDayBefore(date)) {
+        dateInput.style.backgroundColor = "yellow";
+    }
+    else {
+        if (dateInput.value !== "") {
+            dateInput.style.backgroundColor = "greenyellow";
+        }   
+    }
 }
 
 function getItemList() {
     return JSON.parse(localStorage.getItem("itemList") || "[]");
 }
 
-export { completeItem, removeItem, changePriority, checkItemDeadline, getItemList }
+export { completeItem, removeItem, changePriority, checkItemDeadline, getItemList, changeDateDisplay }

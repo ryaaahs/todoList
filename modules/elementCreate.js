@@ -19,6 +19,7 @@ let rowID = 0;
         let completeButtonElement = createCompleteButton(rowID);
         let removeButtonElement = createRemoveButton(rowID); 
         let deadlineElement = createDeadlineInput(rowID);
+        let deadlineInputElement = deadlineElement.getElementsByTagName("input")[0];
         let item = itemList[i];
 
         if (item.completeState) {
@@ -46,6 +47,9 @@ let rowID = 0;
                 selectElement.classList.add("priority-three");
             break;
         }
+
+        deadlineInputElement.value = item.deadlineDate === null ? "" : item.deadlineDate
+        elementLogic.changeDateDisplay(new Date(item.deadlineDate), deadlineInputElement);
         
         itemElement.classList.add('todo-list-item');
         itemElement.append(itemNameElement, itemOptions);
@@ -178,7 +182,7 @@ function createCompleteButton(itemID) {
 
 function createDeadlineInput(itemID) {
     let deadlineInput = document.createElement('input');
-    deadlineInput.type = 'date';
+    deadlineInput.type = 'datetime-local';
     deadlineInput.id = itemID;
     let deadlineContainer = document.createElement('figure');
     let deadlineTitle = document.createElement('figcaption');
