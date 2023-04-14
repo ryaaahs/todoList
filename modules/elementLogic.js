@@ -36,11 +36,8 @@ function removeItem(index) {
     
     // Index will be returned as a string, we need to convert it to a int to use 
     // splice
-    console.log(itemList);
-    console.log(index);
     itemList.splice(parseInt(index), 1);
     itemElement.remove();
-    console.log(itemList);
 
     for (let i = 0; i < itemList.length; i++) {
         itemElement = todoListElement.getElementsByTagName('li')[i];
@@ -52,7 +49,6 @@ function removeItem(index) {
     }
 
     localStorage.setItem('itemList', JSON.stringify(itemList));
-    console.log(getItemList());
 }
 
 /**
@@ -97,11 +93,28 @@ function changePriority(e, index) {
 }
 
 function checkItemDeadline(e, index) {
-    
+    let todoListElement = document.getElementsByClassName('todo-list-container')[0];
+    let itemElement = todoListElement.getElementsByTagName('li')[index];
+    let deadlineInput = itemElement.getElementsByTagName('input')[0];
+    let deadlineDate = new Date(deadlineInput.value);
+    let currentDate = new Date();
+    let itemList = getItemList();
+    let item = itemList[index];
+
+    if (currentDate.getTime() > deadlineDate) {
+        item.isDeadlinePassed = true;
+    } else {
+        item.isDeadlinePassed = false;
+    }
+
+
+    console.log(currentDate, deadlineDate);
+
+    // Grab the value to get the date string
 }
 
 function getItemList() {
     return JSON.parse(localStorage.getItem("itemList") || "[]");
 }
 
-export { completeItem, removeItem, changePriority, getItemList }
+export { completeItem, removeItem, changePriority, checkItemDeadline, getItemList }

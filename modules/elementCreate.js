@@ -184,7 +184,7 @@ function createDeadlineInput(itemID) {
     let deadlineTitle = document.createElement('figcaption');
 
     deadlineInput.onchange = function(e) {
-        elementLogic.checkItemDeadline(this.id);
+        elementLogic.checkItemDeadline(e, this.id);
     }
 
     deadlineTitle.innerText = 'Task Deadline'
